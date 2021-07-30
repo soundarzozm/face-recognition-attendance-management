@@ -50,11 +50,9 @@ def updateAttendance(username):
 def compareFace(username):
     pic_db = face_recognition.load_image_file(username + ".jpeg")
     pic_cam = face_recognition.load_image_file("test.jpeg")
-    face_location_db = face_recognition.face_locations(pic_db)
-    face_location_cam = face_recognition.face_locations(pic_cam)
-    face_encoding_db = face_recognition.face_encodings(pic_db, face_location_db)
-    face_encoding_cam = face_recognition.face_encodings(pic_cam, face_location_cam)
-    return face_recognition.compare_faces(face_encoding_db, face_encoding_cam)
+    face_encoding_db = face_recognition.face_encodings(pic_db)[0]
+    face_encoding_cam = face_recognition.face_encodings(pic_cam)[0]
+    return face_recognition.compare_faces([face_encoding_db], face_encoding_cam)[0]
 
 def verifyAdmin(ADMIN, ADMIN_PW):
     if (userExists(ADMIN)==False) or (users.find({"admin":True, "username":ADMIN}).count() == 0):
