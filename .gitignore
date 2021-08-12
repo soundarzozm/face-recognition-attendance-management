@@ -1,2 +1,2 @@
-web/creds.py
-web/__pycache__/creds.cpython-38.pyc
+server/web/creds.py
+server/web/__pycache__/creds.cpython-38.pyc
