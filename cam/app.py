@@ -3,8 +3,8 @@ import cv2
 
 app = Flask(__name__)
 
-camera = cv2.VideoCapture(2)  # use 0 for web camera
-#  for cctv camera use rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp' instead of camera
+camera = cv2.VideoCapture(0)  # use 0 for web camera
+# for cctv camera use rtsp://username:password@ip_address:554/user=username_password='password'_channel=channel_number_stream=0.sdp' instead of camera
 # for local webcam use cv2.VideoCapture(0)
 
 def gen_frames():  # generate frame by frame from camera
@@ -31,6 +31,11 @@ def index():
     """Video streaming home page."""
     return render_template('index.html')
 
+@app.route('/check')
+def check():
+    frame = camera.read()[1]
+    print(frame)
+    return("None")
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

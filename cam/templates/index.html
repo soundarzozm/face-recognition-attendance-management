@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -11,14 +12,28 @@
 
     <title>Face Recognition Attendance Manager</title>
 </head>
+
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8  offset-lg-2">
-            <h3 class="mt-5">Live Streaming</h3>
-            <img src="{{ url_for('video_feed') }}" width="100%">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  offset-lg-2">
+            
+                <h3 class="mt-5">Live Streaming</h3>
+            
+                <img src="{{url_for('video_feed')}}" width="100%">
+            
+                <input type="text" name="textfield" id="textfield" placeholder="Username"/>
+        
+                <button type="button" onclick="window.location.href='{{url_for('check')}}'">
+                    Update Attendance
+                </button>
+
+            </div>
         </div>
     </div>
-</div>
+    
+    <script src='js/FileSaver.js'></script>
+    <script src='js/script.js'></script>
+
 </body>
 </html>
