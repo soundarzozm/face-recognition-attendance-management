@@ -57,15 +57,15 @@ def check():
     username = request.form['username']
     cv2.imwrite('test.jpg', img)
     uploaded = upload_to_aws('test.jpg', 'itr-soundar', 'test.jpg')
-    # url = "https://itr-soundar.s3.ap-south-1.amazonaws.com/test.jpg"
-    # r = requests.post('http://172.19.0.3:5000/check', json={
-    #     'username':username,
-    #     'url': url
-    # })
-
+    url = "https://itr-soundar.s3.ap-south-1.amazonaws.com/test.jpg"
+    r = requests.post('http://172.19.0.3:5000/check', json={
+         'username':username,
+         'url': url
+    })
+    print(r.text)
     
 
-    return("None")
+    return(r.json())
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, port=8000)
