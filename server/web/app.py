@@ -48,8 +48,8 @@ def updateAttendance(username):
     return None
 
 def compareFace(username):
-    pic_db = face_recognition.load_image_file(username + ".jpeg")
-    pic_cam = face_recognition.load_image_file("test.jpeg")
+    pic_db = face_recognition.load_image_file(username + ".jpg")
+    pic_cam = face_recognition.load_image_file("test.jpg")
     face_encoding_db = face_recognition.face_encodings(pic_db)[0]
     face_encoding_cam = face_recognition.face_encodings(pic_cam)[0]
     return face_recognition.compare_faces([face_encoding_db], face_encoding_cam)[0]
@@ -122,14 +122,14 @@ class Check(Resource):
         if userExists(username)==False:
             return createJson(302, "user not found")
         test_request = requests.get(url)
-        user_request = requests.get(creds.S3_URL + username + ".jpeg")
-        with open("test.jpeg", "wb") as f:
+        user_request = requests.get(creds.S3_URL + username + ".jpg")
+        with open("test.jpg", "wb") as f:
             f.write(test_request.content)
-        with open(username + ".jpeg", "wb") as f:
+        with open(username + ".jpg", "wb") as f:
             f.write(user_request.content)
         result = compareFace(username)
-        os.remove("test.jpeg")
-        os.remove(username + ".jpeg")
+        os.remove("test.jpg")
+        os.remove(username + ".jpg")
         if result:
             updateAttendance(username)
             return createJson(200, "face matched")

@@ -21,19 +21,14 @@
                 <h3 class="mt-5">Live Streaming</h3>
             
                 <img src="{{url_for('video_feed')}}" width="100%">
-            
-                <input type="text" name="textfield" id="textfield" placeholder="Username"/>
-        
-                <button type="button" onclick="window.location.href='{{url_for('check')}}'">
-                    Update Attendance
-                </button>
 
+                <form action="/check" method="post">
+                    username: <input type="text" name="username"/>
+                    <input type="submit" name= "form" value="Update Attendance"/>
+                </form>
             </div>
         </div>
     </div>
-    
-    <script src='js/FileSaver.js'></script>
-    <script src='js/script.js'></script>
 
 </body>
 </html>
